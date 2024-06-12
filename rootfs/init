@@ -8,24 +8,19 @@ export PATH="$PATH:/opt/CrowdStrike/"
 for app in `busybox --list`; do busybox ln -fs /bin/busybox /bin/$app; done
 
 # mount virtual filesystems, proc required for sensor bridge
+mkdir /proc
 mount -t proc proc /proc
+mkdir /dev
 mount -t devtmpfs devtmpfs /dev
+mkdir /sys
 mount -t sysfs sysfs /sys
 mount -t tracefs tracefs /sys/kernel/tracing
-
-# add btrfs support
-#insmod /lib/modules/xor.ko
-#insmod /lib/modules/zstd_compress.ko
-#insmod /lib/modules/libcrc32c.ko
-#insmod /lib/modules/raid6_pq.ko
-#insmod /lib/modules/btrfs.ko
-
-# mount drives...
 
 # setup networking
 ip link set lo up
 
 # setup networking with e1000 card
+insmod /modules/e1000.ko
 ifconfig eth0 up
 udhcpc -i eth0
 rm /etc/resolv.conf
