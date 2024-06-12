@@ -2,8 +2,6 @@ KERNEL_PATH=~/projects/linux/
 
 default: build/rootfs.cpio vmlinux source
 
-.PHONY: $(INSTALLER)
-
 build:
 	mkdir -p build
 
