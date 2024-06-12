@@ -1,5 +1,4 @@
 KERNEL_PATH=~/projects/linux/
-SENSORDIR=$(CSROOT)/private/sensor/
 
 default: build/rootfs.cpio vmlinux source
 
