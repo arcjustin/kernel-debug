@@ -9,6 +9,9 @@ A small init system and set of scripts for debugging the Linux kernel in qemu.
 
 # Compiling / Setup
 1. Checkout and compile a Linux kernel.
+   - `cd $KERNEL_PATH`
+   - `make menuconfig` (Use default options: exit + save).
+   - `make -j4 vmlinux`
 2. Set `KERNEL_PATH` in `Makefile` to the kernel repository.
 3. Invoke `make` to compile the initramfs and setup symlinks for qemu.
 
