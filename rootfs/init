@@ -2,7 +2,6 @@
 
 # setup env
 export LD_LIBRARY_PATH="/lib/x86_64-linux-gnu/:/usr/lib/x86_64-linux-gnu/"
-export PATH="$PATH:/opt/CrowdStrike/"
 
 # link all applets
 for app in `busybox --list`; do busybox ln -fs /bin/busybox /bin/$app; done
@@ -24,9 +23,6 @@ insmod /modules/e1000.ko
 ifconfig eth0 up
 udhcpc -i eth0
 rm /etc/resolv.conf
-
-# forward comms
-socat TCP-LISTEN:8443,fork,reuseaddr TCP-CONNECT:vmhost:8443 &
 
 # disable printing kern msgs to tty
 dmesg -n 1
